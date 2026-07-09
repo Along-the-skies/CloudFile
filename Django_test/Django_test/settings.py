@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_5a25%n3-1^2&76+mks(u+&90%3irk-4dsk311-1wq)l13*2my
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://cloudfile-wnob.onrender.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
