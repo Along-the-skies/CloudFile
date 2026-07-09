@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download File - CloudFile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Download Your File</h1>
+    </header>
+
+    <p>{{ file.file.name }}</p>
+    <a href="{{ file.file.url }}" class="btn">Download</a>
+    <p><small>Your IP will be logged for security.</small></p>
+
+    <footer>
+        &copy; 2026 CloudFile. All rights reserved.
+    </footer>
+</body>
+</html>

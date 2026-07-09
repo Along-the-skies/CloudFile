@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verified - CloudFile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Account Verified!</h1>
+    </header>
+
+    <p>Your account is now active. You can upload files.</p>
+    <a href="{% url 'upload' %}" class="btn">Upload a File</a>
+
+    <footer>
+        &copy; 2026 CloudFile. All rights reserved.
+    </footer>
+</body>
+</html>

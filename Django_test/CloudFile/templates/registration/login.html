@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - CloudFile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Login to CloudFile</h1>
+    </header>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p class="alt-link">
+            Don’t have an account? <a href="{% url 'signup' %}">Sign up here</a>
+        </p>
+    </div>
+
+    <footer>
+        &copy; 2026 CloudFile. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload File</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>CloudFile</h1>
+    </header>
+
+    <h2>Upload a file</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Back to Home button -->
+    <a href="/">Back to Home</a>
+
+    <footer>
+        &copy; 2026 CloudFile. All rights reserved.
+    </footer>
+</body>
+</html>

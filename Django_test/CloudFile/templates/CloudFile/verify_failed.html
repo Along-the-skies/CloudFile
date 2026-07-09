@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verification Failed - CloudFile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Verification Failed</h1>
+    </header>
+
+    <p>Invalid or expired verification link. Please try signing up again.</p>
+    <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+
+    <footer>
+        &copy; 2026 CloudFile. All rights reserved.
+    </footer>
+</body>
+</html>
