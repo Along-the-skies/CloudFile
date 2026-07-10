@@ -5,487 +5,212 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ==================================
+        CSS Reset
+================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    font-family:'Poppins',sans-serif;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    overflow-x:hidden;
-    position:relative;
-
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
     background:
-    radial-gradient(circle at 15% 20%, rgba(59,130,246,.35), transparent 25%),
-    radial-gradient(circle at 85% 80%, rgba(168,85,247,.30), transparent 25%),
-    radial-gradient(circle at center, rgba(6,182,212,.12), transparent 45%),
-    linear-gradient(135deg,#060816,#0F172A,#111827);
-
-    color:#fff;
+        radial-gradient(circle at 15% 20%, rgba(59,130,246,.35), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(168,85,247,.30), transparent 25%),
+        radial-gradient(circle at center, rgba(6,182,212,.12), transparent 45%),
+        linear-gradient(135deg, #060816, #0F172A, #111827);
+    color: #fff;
 }
 
 /* ==================================
         Animated Stars
 ================================== */
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
     background-image:
-
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#9adfff 1px, transparent 1px),
-    radial-gradient(#ffffff 2px, transparent 2px);
-
-    background-size:
-    70px 70px,
-    120px 120px,
-    180px 180px;
-
-    opacity:.22;
-
-    animation:stars 90s linear infinite;
-
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#9adfff 1px, transparent 1px),
+        radial-gradient(#ffffff 2px, transparent 2px);
+    background-size: 70px 70px, 120px 120px, 180px 180px;
+    opacity: .22;
+    animation: stars 90s linear infinite;
 }
 
-@keyframes stars{
-
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(-400px);
-    }
-
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-400px); }
 }
 
 /* ==================================
         Header
 ================================== */
-
-header{
-
-    background:rgba(255,255,255,.05);
-
-    backdrop-filter:blur(20px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-    padding:28px;
-
-    text-align:center;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-
+header {
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,.25);
 }
 
-header h1{
-
-    font-size:2.4rem;
-
-    font-weight:700;
-
-    letter-spacing:1px;
-
-    text-shadow:0 0 20px rgba(59,130,246,.45);
-
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 25px rgba(59,130,246,.55), 0 0 45px rgba(168,85,247,.35);
+    animation: glowPulse 6s ease-in-out infinite;
 }
 
-header p{
+@keyframes glowPulse {
+    0%,100% { text-shadow: 0 0 25px rgba(59,130,246,.55), 0 0 45px rgba(168,85,247,.35); }
+    50% { text-shadow: 0 0 35px rgba(56,189,248,.75), 0 0 65px rgba(168,85,247,.55); }
+}
 
-    margin-top:8px;
-
-    color:#CBD5E1;
-
+p {
+    margin-top: 12px;
+    text-align: center;
+    color: #CBD5E1;
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 /* ==================================
-        Main
+        CTA Button (Anchor)
 ================================== */
-
-main{
-
-    flex:1;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:50px 20px;
-
+a {
+    display: inline-block;
+    margin: 40px auto;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #2563EB, #7C3AED, #06B6D4);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+    box-shadow: 0 15px 35px rgba(37,99,235,.35);
+    transition: all .35s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* ==================================
-        Form Card
-================================== */
-
-.form-container{
-
-    width:100%;
-
-    max-width:430px;
-
-    padding:35px;
-
-    border-radius:24px;
-
-    position:relative;
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(22px);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    box-shadow:
-
-    0 25px 60px rgba(0,0,0,.35),
-    0 0 50px rgba(59,130,246,.12);
-
-    animation:cardFloat 5s ease-in-out infinite;
-
-    transition:.4s;
-
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.form-container:hover{
-
-    box-shadow:
-
-    0 35px 80px rgba(0,0,0,.45),
-    0 0 70px rgba(59,130,246,.22);
-
+a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+    transform: skewX(-25deg);
+    transition: .8s;
 }
 
-.form-container::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    border-radius:24px;
-
-    padding:1px;
-
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.3),
-        rgba(59,130,246,.5),
-        rgba(168,85,247,.5)
-    );
-
-    -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask-composite:exclude;
-
+a:hover::before {
+    left: 140%;
 }
 
-@keyframes cardFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-6px);
-    }
-
+a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 45px rgba(37,99,235,.45);
 }
 
-/* ==================================
-        Labels
-================================== */
-
-label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    font-weight:500;
-
-    color:#E2E8F0;
-
-}
-
-/* ==================================
-        Inputs
-================================== */
-
-input{
-
-    width:100%;
-
-    padding:14px 16px;
-
-    margin-bottom:18px;
-
-    border-radius:14px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    background:rgba(255,255,255,.06);
-
-    color:white;
-
-    transition:.35s;
-
-    font-size:15px;
-
-}
-
-input::placeholder{
-
-    color:#94A3B8;
-
-}
-
-input:hover{
-
-    background:rgba(255,255,255,.08);
-
-}
-
-input:focus{
-
-    outline:none;
-
-    border-color:#38BDF8;
-
-    background:rgba(255,255,255,.10);
-
-    box-shadow:
-
-    0 0 0 4px rgba(56,189,248,.15),
-
-    0 0 20px rgba(56,189,248,.35);
-
-    transform:translateY(-2px);
-
-}
-
-/* ==================================
-        Buttons
-================================== */
-
-button,
-.btn{
-
-    position:relative;
-
-    overflow:hidden;
-
-    width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    color:white;
-
-    font-weight:600;
-
-    font-size:16px;
-
-    background:linear-gradient(
-        135deg,
-        #2563EB,
-        #7C3AED
-    );
-
-    transition:.35s;
-
-    box-shadow:
-
-    0 15px 35px rgba(37,99,235,.35);
-
-}
-
-button::before,
-.btn::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:-120%;
-
-    width:60%;
-
-    height:100%;
-
-    background:
-
-    linear-gradient(
-
-        90deg,
-
-        transparent,
-
-        rgba(255,255,255,.4),
-
-        transparent
-
-    );
-
-    transform:skewX(-25deg);
-
-    transition:.8s;
-
-}
-
-button:hover::before,
-.btn:hover::before{
-
-    left:140%;
-
-}
-
-button:hover,
-.btn:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:
-
-    0 25px 45px rgba(37,99,235,.45);
-
-}
-
-button:active,
-.btn:active{
-
-    transform:scale(.98);
-
-}
-
-/* ==================================
-        Links
-================================== */
-
-a{
-
-    color:#7DD3FC;
-
-    text-decoration:none;
-
-    transition:.3s;
-
-}
-
-a:hover{
-
-    color:white;
-
-    text-shadow:0 0 10px #38BDF8;
-
-}
-
-.alt-link{
-
-    margin-top:20px;
-
-    text-align:center;
-
+a:focus {
+    outline: 2px solid #38BDF8;
+    outline-offset: 4px;
 }
 
 /* ==================================
         Footer
 ================================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: #CBD5E1;
+    font-size: .9rem;
+}
 
-footer{
+/* ==================================
+        Floating Animations
+================================== */
+header, p, a, footer {
+    animation: floatUp 6s ease-in-out infinite;
+}
 
-    text-align:center;
-
-    padding:20px;
-
-    background:rgba(255,255,255,.04);
-
-    backdrop-filter:blur(15px);
-
-    border-top:1px solid rgba(255,255,255,.08);
-
-    color:#CBD5E1;
-
+@keyframes floatUp {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 
 /* ==================================
         Scrollbar
 ================================== */
-
-::-webkit-scrollbar{
-
-    width:10px;
-
+::-webkit-scrollbar {
+    width: 10px;
 }
-
-::-webkit-scrollbar-track{
-
-    background:#111827;
-
+::-webkit-scrollbar-track {
+    background: #111827;
 }
-
-::-webkit-scrollbar-thumb{
-
-    background:#3B82F6;
-
-    border-radius:50px;
-
+::-webkit-scrollbar-thumb {
+    background: #3B82F6;
+    border-radius: 50px;
 }
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#60A5FA;
-
+::-webkit-scrollbar-thumb:hover {
+    background: #60A5FA;
 }
 
 /* ==================================
-        Mobile
+        Responsive Typography
 ================================== */
-
-@media(max-width:600px){
-
-    .form-container{
-
-        margin:18px;
-
-        padding:25px;
-
+@media(max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
     }
-
-    header h1{
-
-        font-size:1.8rem;
-
+    p {
+        font-size: 1rem;
     }
+    a {
+        padding: 14px 28px;
+        font-size: .95rem;
+    }
+}
 
+@media(max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    p {
+        font-size: .95rem;
+    }
+    a {
+        padding: 12px 24px;
+        font-size: .9rem;
+    }
+    footer {
+        font-size: .8rem;
+    }
 }
