@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.conf import settings
+from django.urls import reverse
 
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -61,16 +62,19 @@ def signup(request):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
 
-        # verification link
-        link = f"http://127.0.0.1:8000/verify/{uid}/{token}/"
+        # verification link for current host
+        link = request.build_absolute_uri(reverse("verify", kwargs={"uidb64": uid, "token": token}))
 
         # send email
-        send_mail(
-            "Verify your CloudFile account",
-            f"Click here to verify your account: {link}",
-            settings.DEFAULT_FROM_EMAIL,
-            [email],
-        )
+        try:
+            send_mail(
+                "Verify your CloudFile account",
+                f"Click here to verify your account: {link}",
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+            )
+        except Exception:
+            return render(request, "CloudFile/signup.html", {"error": "Unable to send verification email. Please try again later."})
 
         return render(request, "CloudFile/verify_sent.html")
     return render(request, "CloudFile/signup.html")
