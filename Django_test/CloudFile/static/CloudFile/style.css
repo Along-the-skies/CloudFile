@@ -1,6 +1,7 @@
-/* =======================
-   AlongTheSkies Theme
-======================= */
+/* =========================
+   AlongTheSkies Premium CSS
+   (No HTML Changes Needed)
+========================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -10,89 +11,112 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:'Poppins',sans-serif;
     min-height:100vh;
     display:flex;
     flex-direction:column;
     overflow-x:hidden;
+    position:relative;
 
     background:
-    radial-gradient(circle at top,#4f46e5 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#06b6d4 0%,transparent 25%),
-    linear-gradient(135deg,#090b1a,#111827,#1e293b);
+    radial-gradient(circle at 15% 20%, rgba(59,130,246,.35), transparent 25%),
+    radial-gradient(circle at 85% 80%, rgba(168,85,247,.30), transparent 25%),
+    radial-gradient(circle at center, rgba(6,182,212,.12), transparent 45%),
+    linear-gradient(135deg,#060816,#0F172A,#111827);
 
     color:#fff;
 }
 
-/* Floating Stars */
+/* ==================================
+        Animated Stars
+================================== */
 
 body::before{
+
     content:"";
+
     position:fixed;
     inset:0;
+
     pointer-events:none;
 
     background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(white 1px, transparent 1px);
 
-    background-size:70px 70px,120px 120px;
-    background-position:0 0,40px 60px;
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#9adfff 1px, transparent 1px),
+    radial-gradient(#ffffff 2px, transparent 2px);
 
-    opacity:.25;
+    background-size:
+    70px 70px,
+    120px 120px,
+    180px 180px;
 
-    animation:starsMove 70s linear infinite;
+    opacity:.22;
+
+    animation:stars 90s linear infinite;
+
 }
 
-@keyframes starsMove{
+@keyframes stars{
+
     from{
         transform:translateY(0);
     }
+
     to{
-        transform:translateY(-300px);
+        transform:translateY(-400px);
     }
+
 }
 
-/* =======================
-   Header
-======================= */
+/* ==================================
+        Header
+================================== */
 
 header{
 
-    padding:25px;
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    padding:28px;
 
     text-align:center;
 
-    background:rgba(255,255,255,.05);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid rgba(255,255,255,.12);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
 
 }
 
 header h1{
 
-    font-size:2.3rem;
+    font-size:2.4rem;
 
     font-weight:700;
 
     letter-spacing:1px;
 
+    text-shadow:0 0 20px rgba(59,130,246,.45);
+
 }
 
 header p{
 
-    margin-top:10px;
+    margin-top:8px;
 
-    color:#cbd5e1;
+    color:#CBD5E1;
 
 }
 
-/* =======================
-   Main
-======================= */
+/* ==================================
+        Main
+================================== */
 
 main{
 
@@ -108,58 +132,92 @@ main{
 
 }
 
-/* =======================
-   Glass Card
-======================= */
+/* ==================================
+        Form Card
+================================== */
 
 .form-container{
 
     width:100%;
-    max-width:460px;
+
+    max-width:430px;
 
     padding:35px;
 
     border-radius:24px;
 
+    position:relative;
+
     background:rgba(255,255,255,.08);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(22px);
 
-    border:1px solid rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.12);
 
     box-shadow:
-    0 15px 40px rgba(0,0,0,.35),
-    0 0 40px rgba(59,130,246,.15);
 
-    animation:cardFade .7s ease;
+    0 25px 60px rgba(0,0,0,.35),
+    0 0 50px rgba(59,130,246,.12);
+
+    animation:cardFloat 5s ease-in-out infinite;
+
+    transition:.4s;
 
 }
 
-@keyframes cardFade{
+.form-container:hover{
 
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
+    box-shadow:
 
-    to{
-        opacity:1;
+    0 35px 80px rgba(0,0,0,.45),
+    0 0 70px rgba(59,130,246,.22);
+
+}
+
+.form-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:24px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.3),
+        rgba(59,130,246,.5),
+        rgba(168,85,247,.5)
+    );
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+}
+
+@keyframes cardFloat{
+
+    0%,100%{
         transform:translateY(0);
     }
 
-}
-
-.form-container h2{
-
-    text-align:center;
-
-    margin-bottom:25px;
+    50%{
+        transform:translateY(-6px);
+    }
 
 }
 
-/* =======================
-   Labels
-======================= */
+/* ==================================
+        Labels
+================================== */
 
 label{
 
@@ -169,37 +227,45 @@ label{
 
     font-weight:500;
 
+    color:#E2E8F0;
+
 }
 
-/* =======================
-   Inputs
-======================= */
+/* ==================================
+        Inputs
+================================== */
 
 input{
 
     width:100%;
 
-    padding:14px 18px;
+    padding:14px 16px;
 
     margin-bottom:18px;
 
     border-radius:14px;
 
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.08);
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.06);
 
     color:white;
 
-    font-size:15px;
-
     transition:.35s;
+
+    font-size:15px;
 
 }
 
 input::placeholder{
 
-    color:#cbd5e1;
+    color:#94A3B8;
+
+}
+
+input:hover{
+
+    background:rgba(255,255,255,.08);
 
 }
 
@@ -207,20 +273,30 @@ input:focus{
 
     outline:none;
 
-    border-color:#38bdf8;
+    border-color:#38BDF8;
 
-    box-shadow:0 0 20px rgba(56,189,248,.35);
+    background:rgba(255,255,255,.10);
+
+    box-shadow:
+
+    0 0 0 4px rgba(56,189,248,.15),
+
+    0 0 20px rgba(56,189,248,.35);
 
     transform:translateY(-2px);
 
 }
 
-/* =======================
-   Buttons
-======================= */
+/* ==================================
+        Buttons
+================================== */
 
 button,
 .btn{
+
+    position:relative;
+
+    overflow:hidden;
 
     width:100%;
 
@@ -230,24 +306,67 @@ button,
 
     border-radius:14px;
 
-    font-size:16px;
-
-    font-weight:600;
-
     cursor:pointer;
 
     color:white;
 
+    font-weight:600;
+
+    font-size:16px;
+
     background:linear-gradient(
         135deg,
-        #3b82f6,
-        #8b5cf6
+        #2563EB,
+        #7C3AED
     );
 
     transition:.35s;
 
     box-shadow:
-    0 10px 30px rgba(59,130,246,.35);
+
+    0 15px 35px rgba(37,99,235,.35);
+
+}
+
+button::before,
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.4),
+
+        transparent
+
+    );
+
+    transform:skewX(-25deg);
+
+    transition:.8s;
+
+}
+
+button:hover::before,
+.btn:hover::before{
+
+    left:140%;
 
 }
 
@@ -257,23 +376,25 @@ button:hover,
     transform:translateY(-4px);
 
     box-shadow:
-    0 18px 40px rgba(59,130,246,.45);
+
+    0 25px 45px rgba(37,99,235,.45);
 
 }
 
-button:active{
+button:active,
+.btn:active{
 
     transform:scale(.98);
 
 }
 
-/* =======================
-   Links
-======================= */
+/* ==================================
+        Links
+================================== */
 
 a{
 
-    color:#7dd3fc;
+    color:#7DD3FC;
 
     text-decoration:none;
 
@@ -285,23 +406,21 @@ a:hover{
 
     color:white;
 
-}
+    text-shadow:0 0 10px #38BDF8;
 
-/* =======================
-   Alternate Link
-======================= */
+}
 
 .alt-link{
 
-    margin-top:18px;
+    margin-top:20px;
 
     text-align:center;
 
 }
 
-/* =======================
-   Footer
-======================= */
+/* ==================================
+        Footer
+================================== */
 
 footer{
 
@@ -309,23 +428,55 @@ footer{
 
     padding:20px;
 
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.04);
 
-    border-top:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(15px);
 
-    color:#cbd5e1;
+    border-top:1px solid rgba(255,255,255,.08);
+
+    color:#CBD5E1;
 
 }
 
-/* =======================
-   Mobile
-======================= */
+/* ==================================
+        Scrollbar
+================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#3B82F6;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#60A5FA;
+
+}
+
+/* ==================================
+        Mobile
+================================== */
 
 @media(max-width:600px){
 
     .form-container{
 
-        margin:15px;
+        margin:18px;
 
         padding:25px;
 
