@@ -91,83 +91,35 @@ body::before {
 }
 
 /* ==================================================
-   4. Account Dropdown
+   6. Account Info (Greeting + Logout)
 ================================================== */
-.account-dropdown {
-  position:relative;
+.account-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.account-btn {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:none;
-  border:none;
-  color:var(--text);
-  cursor:pointer;
-  font:inherit;
-  padding:6px 10px;
-  border-radius:6px;
-  transition:background .2s ease;
+.account-greeting {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
 }
 
-.account-btn:hover {
-  background:rgba(255,255,255,.1);
+.logout-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease;
 }
 
-.account-avatar {
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:var(--primary);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-  color:var(--text);
+.logout-btn:hover {
+  background: #0891b2; /* darker accent shade */
 }
-
-.account-name {
-  font-size:0.95rem;
-  color:var(--text);
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-  display:none;
-  position:absolute;
-  top:calc(100% + 8px);
-  right:0;
-  width:180px;
-  border-radius:6px;
-  background:var(--background-mid);
-  border:1px solid rgba(255,255,255,.1);
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
-  z-index:1000;
-}
-
-.account-dropdown:hover .dropdown-menu {
-  display:block;
-}
-
-.dropdown-menu a {
-  display:block;
-  padding:10px 14px;
-  color:var(--text);
-  text-decoration:none;
-  font-size:0.9rem;
-  transition:background .2s ease;
-}
-
-.dropdown-menu a:hover {
-  background:rgba(255,255,255,.1);
-}
-
-.dropdown-menu a.logout {
-  color:var(--accent);
-  font-weight:600;
-}
-
 
 /* ==================================================
    9. Buttons
@@ -224,11 +176,6 @@ body::before {
 }
 
 /* ==================================================
-   12. Cards
-================================================== */
-/* Covered by .activity/.news */
-
-/* ==================================================
    13. Forms
 ================================================== */
 .form-container {
@@ -245,5 +192,3 @@ body::before {
 .form-container input:focus {
   background:rgba(255,255,255,.2); box-shadow:0 0 8px var(--primary);
 }
-
-/*

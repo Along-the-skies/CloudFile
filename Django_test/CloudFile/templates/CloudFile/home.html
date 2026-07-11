@@ -15,70 +15,22 @@
 <!-- =========================
         TOPBAR
 ========================= -->
-<nav class="topbar">
+<div class="topbar">
+  <div class="logo">MyApp</div>
+  
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Settings</a>
+  </div>
 
-    <div class="logo">
-        ☁ CloudFile
-    </div>
+  <!-- Replaced dropdown with greeting + logout -->
+  <div class="account-info">
+    <span class="account-greeting">Hi Vasudev</span>
+    <button class="logout-btn">Logout</button>
+  </div>
+</div>
 
-    <ul class="nav-links">
-        <li><a href="{% url 'home' %}" class="active">Home</a></li>
-        <li><a href="{% url 'upload' %}">Upload</a></li>
-    </ul>
-
-    {% if user.is_authenticated %}
-
-    <div class="account-dropdown">
-
-        <button class="account-btn">
-            <span class="avatar">
-                {{ user.username|first|upper }}
-            </span>
-
-            <span class="username">
-                {{ user.username }}
-            </span>
-
-            <span class="arrow">▼</span>
-        </button>
-
-        <div class="dropdown-menu">
-
-            <a href="#" onclick="return false;">
-                👤 My Profile
-            </a>
-
-            <a href="#" onclick="return false;">
-                ⚙ Settings
-            </a>
-
-            <hr>
-
-            <a href="{% url 'logout' %}" class="logout-link">
-                🚪 Logout
-            </a>
-
-        </div>
-
-    </div>
-
-    {% else %}
-
-    <div class="account">
-
-        <a href="{% url 'login' %}" class="btn">
-            Login
-        </a>
-
-        <a href="{% url 'signup' %}" class="btn">
-            Sign Up
-        </a>
-
-    </div>
-
-    {% endif %}
-
-</nav>
 
 <!-- =========================
         HERO
