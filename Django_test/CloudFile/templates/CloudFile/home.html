@@ -7,28 +7,31 @@
 </head>
 <body>
     <!-- TopBar -->
-    <nav class="topbar">
-        <div class="logo"><h2>CloudFile</h2></div>
-        <ul class="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'upload' %}">Upload</a></li>
-        </ul>
-        <div class="account">
-            {% if user.is_authenticated %}
-                <span class="username">Hi, {{ user.username }}</span>
-                <a href="{% url 'logout' %}" class="btn">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn">Login</a>
-                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-            {% endif %}
-        </div>
-    </nav>
+<nav class="topbar">
+  <div class="logo">CloudFile</div>
+  <ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'upload_file' %}">Upload</a></li>
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+  </ul>
+  <div class="account">
+    {% if user.is_authenticated %}
+      <span class="username">Hi, {{ user.username }}</span>
+      <a href="{% url 'logout' %}" class="btn">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn">Login</a>
+      <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+    {% endif %}
+  </div>
+</nav>
+
 
     <!-- Hero Section -->
-    <header>
-        <h1>Welcome to CloudFile</h1>
-        <p>Securely upload, share, and manage your files.</p>
-    </header>
+<header class="hero">
+  <h1>Welcome to CloudFile</h1>
+  <p>Upload, manage, and share your files securely.</p>
+  <a href="{% url 'upload_file' %}" class="btn">Get Started</a>
+</header>
 
     <!-- Dashboard -->
     <div class="dashboard">
