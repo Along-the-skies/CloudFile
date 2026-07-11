@@ -2,22 +2,22 @@
 <html>
 <head>
     <title>Upload File</title>
-{% load static %}
-<link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
-
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
     <header>
         <h1>CloudFile</h1>
     </header>
 
-    <h2>Upload a file</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="file">
-        <br>
-        <button type="submit">Upload</button>
-    </form>
+    <div class="form-container">
+        <h2>Upload a file</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" class="form-control">
+            <button type="submit" class="btn">Upload</button>
+        </form>
+    </div>
 
     <!-- Back to Home button -->
     <a href="/">Back to Home</a>

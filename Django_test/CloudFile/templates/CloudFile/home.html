@@ -4,19 +4,68 @@
     <title>CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
-
 </head>
 <body>
+    <!-- TopBar -->
+    <nav class="topbar">
+        <div class="logo"><h2>CloudFile</h2></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload_file' %}">Upload</a></li>
+        </ul>
+        <div class="account">
+            {% if user.is_authenticated %}
+                <span class="username">Hi, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <header>
         <h1>Welcome to CloudFile</h1>
+        <p>Securely upload, share, and manage your files.</p>
     </header>
 
-    <p>This is your file sharing homepage!</p>
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <!-- Left Column -->
+        <section class="activity">
+            <h2>What’s Happening?</h2>
+            {% if files %}
+                {% for file in files %}
+                    <div class="activity-item">
+                        <strong>{{ file.file.name }}</strong>
+                        <p>Uploaded {{ file.uploaded_at|timesince }} ago</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No recent uploads yet.</p>
+                <a href="{% url 'upload_file' %}" class="btn">Upload Now</a>
+            {% endif %}
+        </section>
 
-    <a href="/upload/">Upload a file</a>
+        <!-- Right Column -->
+        <aside class="news">
+            <h2>CloudFile News</h2>
+            <div class="news-item">
+                <h3>New Dashboard Design!</h3>
+                <p>Enjoy a refreshed layout inspired by Scratch’s clean interface.</p>
+            </div>
+            <div class="news-item">
+                <h3>Security Upgrade</h3>
+                <p>Your files are now protected with enhanced encryption.</p>
+            </div>
+            <div class="news-item">
+                <h3>Coming Soon</h3>
+                <p>Share files via secure links and track downloads easily.</p>
+            </div>
+        </aside>
+    </div>
 
-    <footer>
-        &copy; 2026 CloudFile. All rights reserved.
-    </footer>
+    <footer>&copy; 2026 CloudFile. All rights reserved.</footer>
 </body>
 </html>

@@ -9,7 +9,7 @@ class SharedFile(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # who uploaded
 
     def __str__(self):
-        return str(self.file.name)
+        return str(self.id)
 
 
 class DownloadLog(models.Model):
