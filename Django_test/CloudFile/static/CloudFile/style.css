@@ -103,6 +103,8 @@ body::before {
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text);
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .logout-btn {

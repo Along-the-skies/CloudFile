@@ -26,7 +26,7 @@
 
   <!-- Replaced dropdown with greeting + logout -->
   <div class="account-info">
-    <span class="account-greeting">Hi {{ user.first_name }}</span>
+    <span class="account-greeting">Hi {{ user.username }}</span>
     <a href="#">Logout</a>
   </div>
 </div>
@@ -59,36 +59,39 @@
     <!-- Left -->
 
     <section class="activity">
+    <h2>Your Files</h2>
 
-        <h2>Your Files</h2>
+    {% if files %}
+        {% for file in files %}
+        <div class="activity-item">
+            <strong>{{ file.file.name }}</strong>
 
-        {% if files %}
+            <p>
+                Uploaded {{ file.uploaded_at|timesince }} ago
+            </p>
 
-            {% for file in files %}
+            <p>
+                {% if file.expires_at %}
+                    {% if file.is_expired %}
+                        <span class="expired">Expired</span>
+                    {% else %}
+                        Expires on {{ file.expires_at }}
+                    {% endif %}
+                {% else %}
+                    No expiry
+                {% endif %}
+            </p>
 
-            <div class="activity-item">
+            <!-- View button -->
+            <a href="{% url 'download_page' file.id %}" class="btn">View</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No recent uploads yet.</p>
+        <a href="{% url 'upload' %}" class="btn">Upload Now</a>
+    {% endif %}
+</section>
 
-                <strong>{{ file.file.name }}</strong>
-
-                <p>
-                    Uploaded {{ file.uploaded_at|timesince }} ago
-                </p>
-
-            </div>
-
-            {% endfor %}
-
-        {% else %}
-
-            <p>No recent uploads yet.</p>
-
-            <a href="{% url 'upload' %}" class="btn">
-                Upload Now
-            </a>
-
-        {% endif %}
-
-    </section>
 
     <!-- Right -->
 

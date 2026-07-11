@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Download File - CloudFile</title>
+    <title>Download File</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
     <header>
-        <h1>Download Your File</h1>
+        <h1>Your File is Ready</h1>
+        <p>{{ file.file.name }}</p>
     </header>
 
-    <p>{{ file.file.name }}</p>
-    <a href="{{ file.file.url }}" class="btn">Download</a>
-    <p><small>Your IP will be logged for security.</small></p>
+    <main>
+        <!-- Preview Section -->
+        {% if file.file.url|lower|endswith:".png" or file.file.url|lower|endswith:".jpg" or file.file.url|lower|endswith:".jpeg" %}
+            <img src="{{ file.file.url }}" alt="Preview" style="max-width:400px;">
+        {% elif file.file.url|lower|endswith:".pdf" %}
+            <iframe src="{{ file.file.url }}" width="600" height="400"></iframe>
+        {% elif file.file.url|lower|endswith:".txt" %}
+            <iframe src="{{ file.file.url }}" width="600" height="400"></iframe>
+        {% else %}
+            <p>Preview not available for this file type.</p>
+        {% endif %}
+
+        <!-- Download Button -->
+        <form action="{% url 'download_file' file.id %}" method="get">
+            <button type="submit" class="btn">Download File</button>
+        </form>
+    </main>
 
     <footer>
         &copy; 2026 CloudFile. All rights reserved.

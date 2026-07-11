@@ -4,16 +4,16 @@
     <title>Upload Success</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
-
 </head>
 <body>
     <header>
         <h1>File uploaded successfully!</h1>
     </header>
 
-    <p>Download link: 
-        <a href="{{ file.file.url }}">{{ file.file.name }}</a>
-    </p>
+    <p>Download link:</p>
+    <form action="{% url 'download_page' file.id %}" method="get">
+        <button type="submit" class="btn">Open Download Page</button>
+    </form>
 
     <!-- Back to Home button -->
     <a href="/">Back to Home</a>

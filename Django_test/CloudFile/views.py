@@ -39,15 +39,26 @@ def upload_file(request):
             })
         shared = SharedFile(file=uploaded_file, owner=request.user)
         shared.save()
+        shared.set_expiry(days=1)  # expires in 1 day
         return render(request, 'CloudFile/success.html', {'file': shared})
     return render(request, 'CloudFile/upload.html')
+
+def download_page(request, file_id):
+    shared = get_object_or_404(SharedFile, id=file_id)
+    if shared.is_expired():
+        return render(request, "CloudFile/expired.html", {"file": shared})
+    return render(request, "CloudFile/download.html", {"file": shared})
+
 
 
 def download_file(request, file_id):
     shared = get_object_or_404(SharedFile, id=file_id)
+    if shared.is_expired():
+        return render(request, "CloudFile/expired.html", {"file": shared})
     ip = get_client_ip(request)
     DownloadLog.objects.create(file=shared, ip_address=ip)
     return FileResponse(shared.file.open(), as_attachment=True)
+
 
 #================= Signup ======================
 def signup(request):
