@@ -29,11 +29,16 @@ def home(request):
 @login_required
 def upload_file(request):
     if request.method == 'POST':
-        uploaded_file = request.FILES['file']
+        uploaded_file = request.FILES.get('file')
+        if not uploaded_file:
+            return render(request, 'CloudFile/upload.html', {
+                'error': 'No file selected. Please choose a file to upload.'
+            })
         shared = SharedFile(file=uploaded_file, owner=request.user)
         shared.save()
         return render(request, 'CloudFile/success.html', {'file': shared})
     return render(request, 'CloudFile/upload.html')
+
 
 def download_file(request, file_id):
     shared = get_object_or_404(SharedFile, id=file_id)
