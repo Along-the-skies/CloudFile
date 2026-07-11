@@ -45,7 +45,7 @@ def upload_file(request):
 
         # Build absolute link with domain
         download_link = request.build_absolute_uri(
-            reverse('download_page', kwargs={'file_id': shared.id})
+            reverse('download', kwargs={'file_id': shared.id})
         )
 
         return render(request, 'CloudFile/success.html', {
