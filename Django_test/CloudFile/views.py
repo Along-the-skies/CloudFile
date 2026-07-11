@@ -24,7 +24,8 @@ def get_client_ip(request):
 
 #================= Views ======================
 def home(request):
-    return render(request, 'CloudFile/home.html')
+    files = SharedFile.objects.filter(owner=request.user).order_by('-uploaded_at')
+    return render(request, 'CloudFile/home.html', {'files': files})
 
 @login_required
 def upload_file(request):
