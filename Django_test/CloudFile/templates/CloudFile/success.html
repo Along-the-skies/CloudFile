@@ -10,13 +10,30 @@
         <h1>File uploaded successfully!</h1>
     </header>
 
-    <p>Download link:</p>
+    <!-- Open Download Page button -->
     <form action="{% url 'download' file.id %}" method="get">
         <button type="submit" class="btn">Open Download Page</button>
     </form>
 
+    <!-- Copy Link box -->
+    <div class="copy-link">
+        <label for="fileLink">Shareable Link:</label>
+        <input type="text" id="fileLink" value="{% url 'download' file.id %}" readonly>
+        <button onclick="copyLink()">Copy</button>
+    </div>
+
+    <script>
+        function copyLink() {
+            const linkBox = document.getElementById("fileLink");
+            linkBox.select();
+            linkBox.setSelectionRange(0, 99999); // for mobile
+            navigator.clipboard.writeText(linkBox.value);
+            alert("Link copied to clipboard!");
+        }
+    </script>
+
     <!-- Back to Home button -->
-    <a href="/">Back to Home</a>
+    <a href="/" class="btn">Back to Home</a>
 
     <footer>
         &copy; 2026 CloudFile. All rights reserved.
