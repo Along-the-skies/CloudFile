@@ -301,6 +301,13 @@ header, p, a, footer {
     font-weight: 500;
 }
 
+.topbar .account .username {
+    min-width: 140px;     /* ✅ gives the "Hi, ..." label more width */
+    text-align: right;    /* ✅ keeps it aligned neatly */
+    margin-right: 8px;    /* ✅ spacing before Logout button */
+}
+
+
 
 .topbar .account span {
     margin-right: 8px;    /* spacing before Logout */
