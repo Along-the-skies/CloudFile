@@ -92,7 +92,10 @@ body::before {
   display:flex; align-items:center; gap:12px;
   background:none; border:none; color:var(--text);
   cursor:pointer; font:inherit;
+  padding:10px 16px; border-radius:12px;
+  transition:background .3s ease;
 }
+.account-btn:hover { background:rgba(255,255,255,.08); }
 .account-avatar {
   width:40px; height:40px; border-radius:50%;
   background:linear-gradient(135deg,var(--primary),var(--secondary));
@@ -104,27 +107,40 @@ body::before {
 /* ==================================================
    8. Dropdown
 ================================================== */
-.dropdown-menu{
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(10px);
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease,
-        visibility .25s;
+.dropdown-menu {
+  display:none;
+  position:absolute; top:calc(100% + 12px); right:0;
+  width:220px; padding:10px 0;
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow);
+  z-index:1000;
 }
-
-.account-dropdown:hover .dropdown-menu{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+.account-dropdown:hover .dropdown-menu { display:block; }
+.dropdown-menu a {
+  display:flex; align-items:center; gap:12px;
+  height:44px; padding:12px 20px;
+  color:var(--text); font-weight:500;
+  text-decoration:none;
+  transition:background .3s ease, color .3s ease;
 }
-.dropdown-menu a:hover { background:rgba(37,99,235,.25); }
+.dropdown-menu a:hover {
+  background:rgba(37,99,235,.25);
+  color:#fff;
+}
 .dropdown-menu hr {
   border:none; height:1px;
   background:rgba(255,255,255,.08);
   margin:8px 0;
+}
+.dropdown-menu a.logout {
+  color:var(--accent); font-weight:600;
+}
+.dropdown-menu a.logout:hover {
+  background:rgba(6,182,212,.25);
+  color:#fff;
 }
 
 /* ==================================================
@@ -204,62 +220,4 @@ body::before {
   background:rgba(255,255,255,.2); box-shadow:0 0 8px var(--primary);
 }
 
-/* ==================================================
-   14. Footer
-================================================== */
-footer {
-  height:60px; display:flex; align-items:center; justify-content:center;
-  background:rgba(255,255,255,.04); color:var(--text-secondary);
-  font-size:.9rem;
-}
-
-/* ==================================================
-   15. Animations
-================================================== */
-@keyframes floatUp {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
-}
-
-/* ==================================================
-   16. Responsive
-================================================== */
-@media(max-width:1024px) {
-  .dashboard { grid-template-columns:60% 40%; }
-}
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero p {
-    font-size: .95rem;
-  }
-
-  .btn {
-    font-size: .9rem;
-    padding: 12px 24px;
-  }
-
-  .topbar {
-    padding: 16px;
-  }
-}
-.activity-item{
-    padding:18px 0;
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.activity-item:last-child{
-    border-bottom:none;
-}
-
-.activity-item strong{
-    display:block;
-    margin-bottom:6px;
-}
-
-.activity-item p{
-    font-size:.9rem;
-    color:var(--text-secondary);
-}
+/*
