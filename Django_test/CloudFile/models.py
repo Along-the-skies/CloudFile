@@ -17,7 +17,7 @@ class SharedFile(models.Model):
     def set_expiry(self, days=3):
         """Default expiry: 1 day after upload"""
         self.expires_at = timezone.now() + timedelta(days=days)
-        self.save()
+
 
     def is_expired(self):
         return self.expires_at and timezone.now() > self.expires_at
