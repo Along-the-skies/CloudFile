@@ -33,20 +33,21 @@
     <!-- Dashboard -->
     <div class="dashboard">
         <!-- Left Column -->
-        <section class="activity">
-            <h2>What’s Happening?</h2>
-            {% if files %}
-                {% for file in files %}
-                    <div class="activity-item">
-                        <strong>{{ file.file.name }}</strong>
-                        <p>Uploaded {{ file.uploaded_at|timesince }} ago</p>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>No recent uploads yet.</p>
-                <a href="{% url 'upload' %}" class="btn">Upload Now</a>
-            {% endif %}
-        </section>
+<section class="activity">
+    <h2>Your Files</h2>
+    {% if files %}
+        {% for file in files %}
+            <div class="activity-item">
+                <strong>{{ file.file.name }}</strong>
+                <p>Uploaded {{ file.uploaded_at|timesince }} ago</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No recent uploads yet.</p>
+        <a href="{% url 'upload' %}" class="btn">Upload Now</a>
+    {% endif %}
+</section>
+
 
         <!-- Right Column -->
         <aside class="news">
