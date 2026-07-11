@@ -29,6 +29,8 @@ def home(request):
         files = SharedFile.objects.filter(owner=request.user).order_by('-uploaded_at')
     return render(request, 'CloudFile/home.html', {'files': files})
 
+from django.urls import reverse
+
 @login_required
 def upload_file(request):
     if request.method == 'POST':
@@ -39,9 +41,19 @@ def upload_file(request):
             })
         shared = SharedFile(file=uploaded_file, owner=request.user)
         shared.save()
-        shared.set_expiry(days=1)  # expires in 1 day
-        return render(request, 'CloudFile/success.html', {'file': shared})
+        shared.set_expiry(days=3)
+
+        # Build absolute link with domain
+        download_link = request.build_absolute_uri(
+            reverse('download_page', kwargs={'file_id': shared.id})
+        )
+
+        return render(request, 'CloudFile/success.html', {
+            'file': shared,
+            'download_link': download_link
+        })
     return render(request, 'CloudFile/upload.html')
+
 
 def download_page(request, file_id):
     shared = get_object_or_404(SharedFile, id=file_id)

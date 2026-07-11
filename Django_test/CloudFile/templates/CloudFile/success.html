@@ -16,11 +16,11 @@
     </form>
 
     <!-- Copy Link box -->
-    <div class="copy-link">
-        <label for="fileLink">Shareable Link:</label>
-        <input type="text" id="fileLink" value="{% url 'download' file.id %}" readonly>
-        <button onclick="copyLink()">Copy</button>
-    </div>
+<div class="copy-link">
+    <label for="fileLink">Shareable Link:</label>
+    <input type="text" id="fileLink" value="{{ download_link }}" readonly>
+    <button onclick="copyLink()">Copy</button>
+</div>
 
     <script>
         function copyLink() {
