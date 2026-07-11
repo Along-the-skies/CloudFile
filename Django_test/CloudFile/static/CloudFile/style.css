@@ -1,372 +1,265 @@
-/* =========================
-   AlongTheSkies Premium CSS
-   (No HTML Changes Needed)
-========================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* ==================================
-        CSS Reset
-================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==================================================
+   1. CSS Variables
+================================================== */
+:root {
+  --primary: #2563EB;
+  --secondary: #7C3AED;
+  --accent: #06B6D4;
+  --text: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --background-dark: #060816;
+  --background-mid: #0F172A;
+  --background-light: #111827;
+  --glass: rgba(255,255,255,.05);
+  --glass-border: rgba(255,255,255,.08);
+  --radius: 16px;
+  --shadow: 0 15px 35px rgba(0,0,0,.25);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+/* ==================================================
+   2. Reset
+================================================== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { min-height:100vh; font-family:'Poppins',sans-serif; color:var(--text); }
 
+/* ==================================================
+   3. Body + Container
+================================================== */
 body {
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    position: relative;
-    background:
-        radial-gradient(circle at 15% 20%, rgba(59,130,246,.35), transparent 25%),
-        radial-gradient(circle at 85% 80%, rgba(168,85,247,.30), transparent 25%),
-        radial-gradient(circle at center, rgba(6,182,212,.12), transparent 45%),
-        linear-gradient(135deg, #060816, #0F172A, #111827);
-    color: #fff;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(59,130,246,.35), transparent 25%),
+    radial-gradient(circle at 85% 80%, rgba(168,85,247,.30), transparent 25%),
+    radial-gradient(circle at center, rgba(6,182,212,.12), transparent 45%),
+    linear-gradient(135deg, var(--background-dark), var(--background-mid), var(--background-light));
+  display:flex; flex-direction:column; overflow-x:hidden; position:relative;
+}
+.main-container {
+  width:100%; max-width:1280px; margin:0 auto; padding:0 24px;
 }
 
-/* ==================================
-        Animated Stars
-================================== */
+/* ==================================================
+   4. Animated Background
+================================================== */
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(#9adfff 1px, transparent 1px),
-        radial-gradient(#ffffff 2px, transparent 2px);
-    background-size: 70px 70px, 120px 120px, 180px 180px;
-    opacity: .22;
-    animation: stars 90s linear infinite;
+  content:""; position:fixed; inset:0; pointer-events:none;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#9adfff 1px, transparent 1px),
+    radial-gradient(#ffffff 2px, transparent 2px);
+  background-size:70px 70px,120px 120px,180px 180px;
+  opacity:.22; animation:stars 90s linear infinite;
 }
+@keyframes stars { from{transform:translateY(0);} to{transform:translateY(-400px);} }
 
-@keyframes stars {
-    from { transform: translateY(0); }
-    to { transform: translateY(-400px); }
-}
-
-/* ==================================
-        Header
-================================== */
-header {
-    background: rgba(255,255,255,.05);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    padding: 28px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,.25);
-}
-
-header h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 0 0 25px rgba(59,130,246,.55), 0 0 45px rgba(168,85,247,.35);
-    animation: glowPulse 6s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-    0%,100% { text-shadow: 0 0 25px rgba(59,130,246,.55), 0 0 45px rgba(168,85,247,.35); }
-    50% { text-shadow: 0 0 35px rgba(56,189,248,.75), 0 0 65px rgba(168,85,247,.55); }
-}
-
-p {
-    margin-top: 12px;
-    text-align: center;
-    color: #CBD5E1;
-    font-size: 1.1rem;
-    font-weight: 400;
-}
-
-/* ==================================
-        CTA Button (Anchor)
-================================== */
-a {
-    display: inline-block;
-    margin: 40px auto;
-    padding: 16px 32px;
-    border-radius: 14px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    color: #fff;
-    background: linear-gradient(135deg, #2563EB, #7C3AED, #06B6D4);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite;
-    box-shadow: 0 15px 35px rgba(37,99,235,.35);
-    transition: all .35s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-    transform: skewX(-25deg);
-    transition: .8s;
-}
-
-a:hover::before {
-    left: 140%;
-}
-
-a:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 25px 45px rgba(37,99,235,.45);
-}
-
-a:focus {
-    outline: 2px solid #38BDF8;
-    outline-offset: 4px;
-}
-
-/* ==================================
-        Footer
-================================== */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(255,255,255,.04);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255,255,255,.08);
-    color: #CBD5E1;
-    font-size: .9rem;
-}
-
-/* ==================================
-        Floating Animations
-================================== */
-header, p, a, footer {
-    animation: floatUp 6s ease-in-out infinite;
-}
-
-@keyframes floatUp {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-/* ==================================
-        Scrollbar
-================================== */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #111827;
-}
-::-webkit-scrollbar-thumb {
-    background: #3B82F6;
-    border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #60A5FA;
-}
-
-/* ==================================
-        Responsive Typography
-================================== */
-@media(max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    p {
-        font-size: 1rem;
-    }
-    a {
-        padding: 14px 28px;
-        font-size: .95rem;
-    }
-}
-
-@media(max-width: 480px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    p {
-        font-size: .95rem;
-    }
-    a {
-        padding: 12px 24px;
-        font-size: .9rem;
-    }
-    footer {
-        font-size: .8rem;
-    }
-}
-/* ==================================
-        Form Container
-================================== */
-.form-container {
-    max-width: 420px;
-    margin: 60px auto;
-    padding: 32px;
-    background: rgba(255,255,255,.06);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0,0,0,.35);
-}
-
-/* ==================================
-        Form Fields
-================================== */
-.form-container input {
-    width: 100%;
-    padding: 14px;
-    margin: 12px 0;
-    border: none;
-    border-radius: 10px;
-    background: rgba(255,255,255,.1);
-    color: #fff;
-    font-size: 1rem;
-    outline: none;
-}
-
-.form-container input:focus {
-    background: rgba(255,255,255,.2);
-    box-shadow: 0 0 8px #3B82F6;
-}
-
-/* ==================================
-        Submit Button
-================================== */
-.btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-    background: linear-gradient(135deg, #2563EB, #7C3AED, #06B6D4);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite;
-    transition: all .35s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(37,99,235,.45);
-}
+/* ==================================================
+   5. Topbar
+================================================== */
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 28px;
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  height:72px; padding:0 32px;
+  display:flex; align-items:center; gap:50px;
+  background:var(--glass); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--glass-border);
+}
+.logo { font-size:1.5rem; font-weight:700; letter-spacing:.5px; color:var(--text); }
+.nav-links {
+  list-style:none; display:flex; align-items:center; gap:28px;
+  margin:0; padding:0; margin-left:auto;
+}
+.nav-links a {
+  position:relative;
+  font-size:1rem; font-weight:500; padding:10px 16px; border-radius:12px;
+  text-decoration:none; color:var(--text);
+  transition:all .3s ease;
+}
+.nav-links a.active {
+  background:rgba(37,99,235,.15);
+  border:1px solid rgba(37,99,235,.3);
+  color:white;
+}
+.nav-links a::after {
+  content:""; position:absolute; left:0; bottom:4px;
+  width:0%; height:2px; background:var(--primary);
+  transition:.3s;
+}
+.nav-links a:hover::after { width:100%; }
+
+/* ==================================================
+   7. Account
+================================================== */
+.account-dropdown { position:relative; }
+.account-btn {
+  display:flex; align-items:center; gap:12px;
+  background:none; border:none; color:var(--text);
+  cursor:pointer; font:inherit;
+}
+.account-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:600; color:var(--text);
+}
+.account-name { font-size:1rem; color:var(--text); }
+
+/* ==================================================
+   8. Dropdown
+================================================== */
+.dropdown-menu{
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s;
 }
 
-.topbar .logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #fff;
+.account-dropdown:hover .dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+.dropdown-menu a:hover { background:rgba(37,99,235,.25); }
+.dropdown-menu hr {
+  border:none; height:1px;
+  background:rgba(255,255,255,.08);
+  margin:8px 0;
 }
 
-.topbar .nav-links {
-  display: flex;
-  gap: 20px;
+/* ==================================================
+   9. Buttons
+================================================== */
+.btn {
+  height:48px; padding:14px 28px; border-radius:12px;
+  font-size:1rem; font-weight:600; color:var(--text);
+  background:linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));
+  background-size:200% 200%; animation:gradientShift 8s ease infinite;
+  transition:all .35s ease; border:none; cursor:pointer;
+}
+.btn:hover { transform:translateY(-3px); box-shadow:0 20px 40px rgba(37,99,235,.45); }
+@keyframes gradientShift {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-.topbar .nav-links a {
-  color: #fff;
-  font-weight: 500;
-  transition: color .2s;
-}
-
-.topbar .nav-links a:hover {
-  color: #3B82F6;
-}
-
-.topbar .account {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.topbar .account .username {
-  min-width: 140px;
-  text-align: right;
-  font-size: 1.1rem;
-}
-
-
-.dashboard {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    padding: 40px;
-}
-
-.activity, .news {
-    background: rgba(255,255,255,.06);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    padding: 32px;                 /* consistent padding */
-    box-shadow: 0 10px 25px rgba(0,0,0,.25);
-}
-
-/* Heading spacing */
-.activity h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 24px;           /* ✅ space between heading and files */
-    color: #fff;
-}
-
-/* File items */
-.activity-item {
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
-    padding-bottom: 12px;
-}
-
-/* News items */
-.news-item {
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
-    padding-bottom: 12px;
-}
-
-.news-item h3 {
-    color: #3B82F6;
-    margin-bottom: 8px;            /* ✅ clearer separation */
-}
+/* ==================================================
+   10. Hero
+================================================== */
 .hero {
-  text-align: center;
-  padding: 80px 20px;
+  max-width:720px; margin:60px auto; padding:0 24px;
+  min-height:320px;
+  display:flex; flex-direction:column; justify-content:center;
+  text-align:center; gap:20px;
 }
-
 .hero h1 {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-  color: #fff;
+  font-size:2.8rem; font-weight:700;
+  line-height:1.2; letter-spacing:.4px;
+}
+.hero p { font-size:1.2rem; color:var(--text-secondary); }
+.hero .btn { margin-top:28px; }
+
+/* ==================================================
+   11. Dashboard
+================================================== */
+.dashboard {
+  width:100%; max-width:1280px; margin:40px auto; padding:0 24px;
+  display:grid; grid-template-columns:70% 30%; gap:30px;
+}
+.activity, .news {
+  padding:32px; border-radius:var(--radius);
+  background:rgba(255,255,255,.06); backdrop-filter:blur(20px);
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  transition:.3s ease;
+}
+.activity:hover, .news:hover {
+  transform:translateY(-5px);
+  border:1px solid rgba(37,99,235,.2);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.3),
+    0 0 25px rgba(37,99,235,.12);
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  color: rgba(255,255,255,.8);
+/* ==================================================
+   12. Cards
+================================================== */
+/* Covered by .activity/.news */
+
+/* ==================================================
+   13. Forms
+================================================== */
+.form-container {
+  max-width:420px; margin:60px auto; padding:32px;
+  background:rgba(255,255,255,.06); backdrop-filter:blur(20px);
+  border-radius:var(--radius); box-shadow:var(--shadow);
+}
+.form-container input {
+  width:100%; padding:14px; margin:12px 0;
+  border:none; border-radius:10px;
+  background:rgba(255,255,255,.1); color:var(--text);
+  transition:.3s;
+}
+.form-container input:focus {
+  background:rgba(255,255,255,.2); box-shadow:0 0 8px var(--primary);
+}
+
+/* ==================================================
+   14. Footer
+================================================== */
+footer {
+  height:60px; display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.04); color:var(--text-secondary);
+  font-size:.9rem;
+}
+
+/* ==================================================
+   15. Animations
+================================================== */
+@keyframes floatUp {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+
+/* ==================================================
+   16. Responsive
+================================================== */
+@media(max-width:1024px) {
+  .dashboard { grid-template-columns:60% 40%; }
+}
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: .95rem;
+  }
+
+  .btn {
+    font-size: .9rem;
+    padding: 12px 24px;
+  }
+
+  .topbar {
+    padding: 16px;
+  }
+}
+.activity-item{
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.activity-item:last-child{
+    border-bottom:none;
+}
+
+.activity-item strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.activity-item p{
+    font-size:.9rem;
+    color:var(--text-secondary);
 }

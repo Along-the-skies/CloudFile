@@ -1,74 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CloudFile</title>
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
+
 <body>
-    <!-- TopBar -->
+
+<!-- =========================
+        TOPBAR
+========================= -->
 <nav class="topbar">
-  <div class="logo">CloudFile</div>
-  <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'upload' %}">Upload</a></li>
-  </ul>
-  <div class="account">
-    {% if user.is_authenticated %}
-      <span class="username">Hi, {{ user.username }}</span>
-      <a href="{% url 'logout' %}" class="btn">Logout</a>
-    {% else %}
-      <a href="{% url 'login' %}" class="btn">Login</a>
-      <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-    {% endif %}
-  </div>
-</nav>
 
-
-    <!-- Hero Section -->
-<header class="hero">
-  <h1>Welcome to CloudFile</h1>
-  <p>Upload, manage, and share your files securely.</p>
-  <a href="{% url 'upload' %}" class="btn">Get Started</a>
-</header>
-
-    <!-- Dashboard -->
-    <div class="dashboard">
-        <!-- Left Column -->
-<section class="activity">
-    <h2>Your Files</h2>
-    {% if files %}
-        {% for file in files %}
-            <div class="activity-item">
-                <strong>{{ file.file.name }}</strong>
-                <p>Uploaded {{ file.uploaded_at|timesince }} ago</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No recent uploads yet.</p>
-        <a href="{% url 'upload' %}" class="btn">Upload Now</a>
-    {% endif %}
-</section>
-
-
-        <!-- Right Column -->
-        <aside class="news">
-            <h2>CloudFile News</h2>
-            <div class="news-item">
-                <h3>New Dashboard Design!</h3>
-                <p>Enjoy a refreshed layout inspired by Scratch’s clean interface.</p>
-            </div>
-            <div class="news-item">
-                <h3>Security Upgrade</h3>
-                <p>Your files are now protected with enhanced encryption.</p>
-            </div>
-            <div class="news-item">
-                <h3>Coming Soon</h3>
-                <p>Share files via secure links and track downloads easily.</p>
-            </div>
-        </aside>
+    <div class="logo">
+        ☁ CloudFile
     </div>
 
-    <footer>&copy; 2026 CloudFile. All rights reserved.</footer>
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}" class="active">Home</a></li>
+        <li><a href="{% url 'upload' %}">Upload</a></li>
+    </ul>
+
+    {% if user.is_authenticated %}
+
+    <div class="account-dropdown">
+
+        <button class="account-btn">
+            <span class="avatar">
+                {{ user.username|first|upper }}
+            </span>
+
+            <span class="username">
+                {{ user.username }}
+            </span>
+
+            <span class="arrow">▼</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+            <a href="#" onclick="return false;">
+                👤 My Profile
+            </a>
+
+            <a href="#" onclick="return false;">
+                ⚙ Settings
+            </a>
+
+            <hr>
+
+            <a href="{% url 'logout' %}" class="logout-link">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="account">
+
+        <a href="{% url 'login' %}" class="btn">
+            Login
+        </a>
+
+        <a href="{% url 'signup' %}" class="btn">
+            Sign Up
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</nav>
+
+<!-- =========================
+        HERO
+========================= -->
+
+<header class="hero">
+
+    <h1>Welcome to CloudFile</h1>
+
+    <p>
+        Upload, manage, and share your files securely.
+    </p>
+
+    <a href="{% url 'upload' %}" class="btn">
+        Upload File
+    </a>
+
+</header>
+
+<!-- =========================
+        DASHBOARD
+========================= -->
+
+<div class="dashboard">
+
+    <!-- Left -->
+
+    <section class="activity">
+
+        <h2>Your Files</h2>
+
+        {% if files %}
+
+            {% for file in files %}
+
+            <div class="activity-item">
+
+                <strong>{{ file.file.name }}</strong>
+
+                <p>
+                    Uploaded {{ file.uploaded_at|timesince }} ago
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No recent uploads yet.</p>
+
+            <a href="{% url 'upload' %}" class="btn">
+                Upload Now
+            </a>
+
+        {% endif %}
+
+    </section>
+
+    <!-- Right -->
+
+    <aside class="news">
+
+        <h2>CloudFile News</h2>
+
+        <div class="news-item">
+            <h3>🚀 New Dashboard</h3>
+            <p>
+                Enjoy a cleaner and faster interface.
+            </p>
+        </div>
+
+        <div class="news-item">
+            <h3>🔒 Security Upgrade</h3>
+            <p>
+                Enhanced encryption keeps your files safe.
+            </p>
+        </div>
+
+        <div class="news-item">
+            <h3>✨ Coming Soon</h3>
+            <p>
+                Secure sharing links and download tracking.
+            </p>
+        </div>
+
+    </aside>
+
+</div>
+
+<!-- =========================
+        FOOTER
+========================= -->
+
+<footer>
+
+    &copy; 2026 CloudFile. All rights reserved.
+
+</footer>
+
 </body>
 </html>
