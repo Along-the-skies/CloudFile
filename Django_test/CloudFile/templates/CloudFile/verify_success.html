@@ -10,7 +10,11 @@
 <body>
     <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
         <div class="card status-card">
-            <div class="status-icon success">✓</div>
+            <div class="status-icon-wrapper success">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
             <h2>Account Verified!</h2>
             <p>Your authentication credentials are active. You're fully cleared to begin storing secure transfers.</p>
             <a href="{% url 'upload' %}" class="btn">Secure Upload Portal</a>

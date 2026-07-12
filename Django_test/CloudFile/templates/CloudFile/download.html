@@ -18,21 +18,20 @@
     <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
         <div class="card preview-card" style="width: 100%;">
             <header style="text-align: center; margin-bottom: 24px;">
-                <h1 style="font-size:1.8rem; margin-bottom:4px;">Your File is Ready</h1>
+                <h1 style="font-size:1.8rem; margin-bottom:8px;">Your File is Ready</h1>
                 <p style="color: var(--accent); font-weight: 500;">{{ file.file.name }}</p>
             </header>
 
-            <!-- Preview Frame Area -->
             <div class="preview-box">
                 {% if file.file.url|lower|endswith:".png" or file.file.url|lower|endswith:".jpg" or file.file.url|lower|endswith:".jpeg" %}
                     <img src="{{ file.file.url }}" alt="Preview">
-                {% elif file.file.url|lower|endswith:".pdf" %}
-                    <iframe src="{{ file.file.url }}"></iframe>
-                {% elif file.file.url|lower|endswith:".txt" %}
+                {% elif file.file.url|lower|endswith:".pdf" or file.file.url|lower|endswith:".txt" %}
                     <iframe src="{{ file.file.url }}"></iframe>
                 {% else %}
                     <div style="text-align: center; color: var(--text-secondary);">
-                        <p style="font-size:3rem; margin-bottom:10px;">📦</p>
+                        <svg style="margin-bottom: 12px; color: var(--text-muted);" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        </svg>
                         <p>Preview format not supported inline.</p>
                     </div>
                 {% endif %}

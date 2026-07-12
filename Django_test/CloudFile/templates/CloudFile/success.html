@@ -14,7 +14,11 @@
 
     <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
         <div class="card status-card">
-            <div class="status-icon success">✓</div>
+            <div class="status-icon-wrapper success">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
             <h2>Uploaded Successfully!</h2>
             <p>Your file has been secured on CloudFile and is ready for access.</p>
 
@@ -35,7 +39,6 @@
         </div>
     </main>
 
-    <!-- Dynamic Modern Notification Toast -->
     <div id="toast" class="toast">Link copied to clipboard!</div>
 
     <footer>
@@ -49,10 +52,9 @@
             const toast = document.getElementById("toast");
 
             linkBox.select();
-            linkBox.setSelectionRange(0, 99999); // Mobile compatibility
+            linkBox.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(linkBox.value);
 
-            // Trigger elegant toast notice instead of alert browser popups
             toast.classList.add("show");
             copyBtn.textContent = "Copied!";
             copyBtn.style.borderColor = "var(--success)";

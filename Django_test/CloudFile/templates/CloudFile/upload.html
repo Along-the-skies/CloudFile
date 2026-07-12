@@ -18,13 +18,15 @@
     <main class="main-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">
         <div class="card form-card" style="width: 100%;">
             <h2>Upload a File</h2>
-            <p>Share securely. Max file size defaults are supported.</p>
+            <p>Secure, cloud-hosted storage solutions.</p>
 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="file-upload-wrapper" id="drop-zone">
-                    <span class="file-upload-icon">📁</span>
-                    <p style="font-weight:600; margin-bottom:4px;">Drag & Drop files here</p>
+                    <svg class="file-upload-icon" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    <p style="font-weight:600; margin-bottom:6px;">Drag & Drop files here</p>
                     <p style="font-size:0.8rem; color:var(--text-secondary);">or click to browse from system</p>
                     <input type="file" name="file" id="file-input" required>
                 </div>
