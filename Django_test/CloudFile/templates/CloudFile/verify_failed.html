@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Failed - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Verification Failed</h1>
-    </header>
-
-    <p>Invalid or expired verification link. Please try signing up again.</p>
-    <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-
-    <footer>
-        &copy; 2026 CloudFile. All rights reserved.
-    </footer>
+    <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <div class="card status-card">
+            <div class="status-icon danger">✕</div>
+            <h2>Verification Failed</h2>
+            <p>The system is unable to authenticate this verification link. It may have expired or been deactivated.</p>
+            <a href="{% url 'signup' %}" class="btn">Register New Account</a>
+        </div>
+    </main>
 </body>
 </html>

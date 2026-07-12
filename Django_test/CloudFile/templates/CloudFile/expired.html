@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>File Expired</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Expired - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>File Expired</h1>
-    </header>
-    <p>Sorry, this file is no longer available for download.</p>
-    <a href="/">Back to Home</a>
+    <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <div class="card status-card">
+            <div class="status-icon danger">⚠️</div>
+            <h2>Link Expired</h2>
+            <p>We apologize, but this link has passed its designated access duration and is no longer available.</p>
+            <a href="/" class="btn btn-secondary" style="margin-top:10px;">Return to Home</a>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Download File</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Your File is Ready</h1>
-        <p>{{ file.file.name }}</p>
-    </header>
+    <nav class="topbar">
+        <a href="/" class="logo">CloudFile</a>
+        <div class="nav-links">
+            <a href="/">Dashboard</a>
+        </div>
+    </nav>
 
-    <main>
-        <!-- Preview Section -->
-        {% if file.file.url|lower|endswith:".png" or file.file.url|lower|endswith:".jpg" or file.file.url|lower|endswith:".jpeg" %}
-            <img src="{{ file.file.url }}" alt="Preview" style="max-width:400px;">
-        {% elif file.file.url|lower|endswith:".pdf" %}
-            <iframe src="{{ file.file.url }}" width="600" height="400"></iframe>
-        {% elif file.file.url|lower|endswith:".txt" %}
-            <iframe src="{{ file.file.url }}" width="600" height="400"></iframe>
-        {% else %}
-            <p>Preview not available for this file type.</p>
-        {% endif %}
+    <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <div class="card preview-card" style="width: 100%;">
+            <header style="text-align: center; margin-bottom: 24px;">
+                <h1 style="font-size:1.8rem; margin-bottom:4px;">Your File is Ready</h1>
+                <p style="color: var(--accent); font-weight: 500;">{{ file.file.name }}</p>
+            </header>
 
-        <!-- Download Button -->
-        <form action="{% url 'download_file' file.id %}" method="get">
-            <button type="submit" class="btn">Download File</button>
-        </form>
+            <!-- Preview Frame Area -->
+            <div class="preview-box">
+                {% if file.file.url|lower|endswith:".png" or file.file.url|lower|endswith:".jpg" or file.file.url|lower|endswith:".jpeg" %}
+                    <img src="{{ file.file.url }}" alt="Preview">
+                {% elif file.file.url|lower|endswith:".pdf" %}
+                    <iframe src="{{ file.file.url }}"></iframe>
+                {% elif file.file.url|lower|endswith:".txt" %}
+                    <iframe src="{{ file.file.url }}"></iframe>
+                {% else %}
+                    <div style="text-align: center; color: var(--text-secondary);">
+                        <p style="font-size:3rem; margin-bottom:10px;">📦</p>
+                        <p>Preview format not supported inline.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px; margin-top:24px;">
+                <form action="{% url 'download_file' file.id %}" method="get">
+                    <button type="submit" class="btn" style="width:100%;">Download File Now</button>
+                </form>
+                <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </div>
     </main>
 
     <footer>

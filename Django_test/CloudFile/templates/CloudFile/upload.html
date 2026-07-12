@@ -1,29 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload File</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>CloudFile</h1>
-    </header>
+    <nav class="topbar">
+        <a href="/" class="logo">CloudFile</a>
+        <div class="nav-links">
+            <a href="/">Back to Dashboard</a>
+        </div>
+    </nav>
 
-    <div class="form-container">
-        <h2>Upload a file</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="file" class="form-control">
-            <button type="submit" class="btn">Upload</button>
-        </form>
-    </div>
+    <main class="main-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1;">
+        <div class="card form-card" style="width: 100%;">
+            <h2>Upload a File</h2>
+            <p>Share securely. Max file size defaults are supported.</p>
 
-    <!-- Back to Home button -->
-    <a href="/">Back to Home</a>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="file-upload-wrapper" id="drop-zone">
+                    <span class="file-upload-icon">📁</span>
+                    <p style="font-weight:600; margin-bottom:4px;">Drag & Drop files here</p>
+                    <p style="font-size:0.8rem; color:var(--text-secondary);">or click to browse from system</p>
+                    <input type="file" name="file" id="file-input" required>
+                </div>
+                <div id="file-selected-name" style="margin-bottom:20px; font-weight:600; font-size:0.9rem; color:var(--accent);"></div>
+                
+                <button type="submit" class="btn" style="width: 100%;">Start Upload</button>
+            </form>
+        </div>
+    </main>
 
     <footer>
         &copy; 2026 CloudFile. All rights reserved.
     </footer>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const selectedName = document.getElementById('file-selected-name');
+        const dropZone = document.getElementById('drop-zone');
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                selectedName.textContent = "Selected: " + fileInput.files[0].name;
+            }
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--primary)';
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--glass-border)';
+            }, false);
+        });
+    </script>
 </body>
 </html>

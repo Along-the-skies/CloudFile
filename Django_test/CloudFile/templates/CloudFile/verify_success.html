@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verified - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Account Verified!</h1>
-    </header>
-
-    <p>Your account is now active. You can upload files.</p>
-    <a href="{% url 'upload' %}" class="btn">Upload a File</a>
-
-    <footer>
-        &copy; 2026 CloudFile. All rights reserved.
-    </footer>
+    <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <div class="card status-card">
+            <div class="status-icon success">✓</div>
+            <h2>Account Verified!</h2>
+            <p>Your authentication credentials are active. You're fully cleared to begin storing secure transfers.</p>
+            <a href="{% url 'upload' %}" class="btn">Secure Upload Portal</a>
+        </div>
+    </main>
 </body>
 </html>
