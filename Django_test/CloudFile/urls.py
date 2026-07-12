@@ -11,6 +11,6 @@ urlpatterns = [
     path("signup/", views.signup, name="signup"),
     path('verify/<uidb64>/<token>/', views.verify, name='verify'),
     path('download_page/<uuid:file_id>/', views.download_page, name='download_page'),
-    path('logout/',auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('logout/',auth_views.LogoutView.as_view(next_page=''), name='logout'),
   # new route
 ]
