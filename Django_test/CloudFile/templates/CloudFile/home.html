@@ -39,7 +39,7 @@
 
     <div class="account-info">
       <span class="account-greeting">Hi, {{ user.username }}</span>
-      <a href="#" class="logout-btn">Logout</a>
+      <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
     </div>
   </div>
 </nav>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="file-action">
-                            <a href="{% url 'download' file.id %}" class="btn btn-secondary btn-view">View File</a>
+                            <a href="{% url 'download_page' file.id %}" class="btn btn-secondary btn-view">View File</a>
                         </div>
                     </div>
                     {% endfor %}
