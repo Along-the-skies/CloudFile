@@ -143,3 +143,4 @@ EMAIL_HOST_USER = "vasudevonden@gmail.com"
 EMAIL_HOST_PASSWORD = "psyt mpnd rlgz bsjw"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+LOGOUT_REDIRECT_URL = '/'
