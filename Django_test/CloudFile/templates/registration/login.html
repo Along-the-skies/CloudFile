@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CloudFile</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CloudFile/style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Login to CloudFile</h1>
-    </header>
+    <nav class="topbar">
+        <a href="{% url 'home' %}" class="logo">CloudFile</a>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+    </nav>
 
-    <div class="form-container">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Login</button>
-        </form>
+    <main class="main-wrapper" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <div class="card form-card">
+            <h2>Login to CloudFile</h2>
+            <p>Access your secure storage by logging in below</p>
 
-        <p class="alt-link">
-            Don’t have an account? <a href="{% url 'signup' %}">Sign up here</a>
-        </p>
-    </div>
+            {% if error %}
+                <div class="alert alert-error">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Login</button>
+            </form>
+
+            <p class="alt-link" style="margin-top: 15px; text-align: center;">
+                Don’t have an account? <a href="{% url 'signup' %}">Sign up here</a>
+            </p>
+        </div>
+    </main>
 
     <footer>
         &copy; 2026 CloudFile. All rights reserved.
